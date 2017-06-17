@@ -6,6 +6,7 @@ import qualified System.Directory as D (renameFile)
 import System.IO.Error (catchIOError, isDoesNotExistError, ioError)
 import Data.Foldable (forM_)
 import qualified System.FilePath as F (takeBaseName, replaceBaseName)
+import qualified Text.Printf as P (printf)
 
 type FilePath = String
 
@@ -15,28 +16,23 @@ contents dir = catchIOError (fmap fromList <$> listDirectory (toList dir)) $ \e 
      then return []
      else ioError e
 
-rename :: FilePath -> FilePath
-rename filePath = case nonEmpty parts of
-                    Nothing     -> filePath
-                    Just parts' -> replaceBaseName filePath $ unite (reorder parts')
+rename :: FilePath -> Maybe FilePath
+rename filePath = do
+  parts    <- nonEmpty $ splitOn (=='_') basename
+  num      <- readInteger (last parts)
+  let numStr   = fromList (P.printf "%02d" num :: [Char])
+  reodered <- reorder numStr . getNonEmpty $ parts
+  return $ replaceBaseName filePath (unite reodered)
   where
     basename = takeBaseName filePath
-    parts = splitOn (=='_') basename
-    isNumber str = isJust (readInteger str)
-    unite = mconcat . intersperse "_" . getNonEmpty
+    unite = mconcat . intersperse "_"
 
-    reorder :: NonEmpty [String] -> NonEmpty [String]
-    reorder parts' = if isNumber (last parts')
-                        then fmapToNonEmpty reorder' parts'
-                        else parts'
-        where
-          fmapToNonEmpty f = fromMaybe parts' . nonEmpty . f . getNonEmpty
-          lenParts = length parts'
-
-    reorder' :: [String] -> [String]
-    reorder' parts = start <> num <> end
+    reorder :: String -> [String] -> Maybe [String]
+    reorder numStr parts = if length parts > 8
+                              then Just $ start <> [numStr] <> end
+                              else Nothing
       where (start, end') = splitAt splitNum parts
-            (num, end)    = revSplitAt 1 end'
+            (_, end)      = revSplitAt 1 end'
             splitNum = case last <$> nonEmpty (take 7 parts) of
                          Just "best" -> 7
                          _           -> 6
@@ -47,10 +43,12 @@ basedir = "/tmp/fakefiles/"
 main :: IO ()
 main = do
   files <- contents basedir
-  forM_ files $ \file -> do
-    let newFileName = rename file
-    putStrLn ("Renaming file from: " <> file <> " to: " <> newFileName)
-    {-renameFile (basedir<>file) (basedir<>newFileName)-}
+  forM_ files $ \file ->
+        case rename file of
+          Just newFileName -> do
+            putStrLn ("Renaming file from: " <> file <> " to: " <> newFileName)
+            renameFile (basedir<>file) (basedir<>newFileName)
+          Nothing -> putStrLn $ "No need to rename: " <> file
 
 
 -- Converting functions from [Char] to String and viceversa

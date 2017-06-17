@@ -12,9 +12,10 @@ cabal-version:       >=1.10
 extra-source-files:  README.md
 --license:             MIT
 
-executable change_name
-  hs-source-dirs:      src
-  main-is:             change_name.hs
+executable mv_on_batch
+  hs-source-dirs:      src/mv_on_batch
+  --main-is:             01_first.hs
+  main-is:             02_using_maybe_monad.hs
   default-language:    Haskell2010
   default-extensions:  NoImplicitPrelude
                      , OverloadedStrings
