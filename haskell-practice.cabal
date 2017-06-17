@@ -1,16 +1,18 @@
 name:                haskell-practice
 version:             0.1.0.0
 synopsis:            Just some practice code
--- description:
-homepage:            https://github.com/githubuser/haskell-practice#readme
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2017 Author name here
-category:            Web
+description:         This package contains some code I've been writing to learn better haskell,
+                     its practices and some libraries.
+                     The cabal checker forced me to write something in the description XD
+--homepage:            https://gitlab.com/helq/haskell-practice#readme
+author:              Helq
+maintainer:          helq@live.de
+copyright:           2017 Helq
+category:            Learning
 build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
---license:             MIT
+license:             MIT
 
 executable mv_on_batch
   hs-source-dirs:      src/mv_on_batch
