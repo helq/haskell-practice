@@ -14,35 +14,48 @@ cabal-version:       >=1.10
 extra-source-files:  README.md
 license:             MIT
 
-executable mv_on_batch
-  hs-source-dirs:      src/mv_on_batch
-  --main-is:             01_first.hs
-  main-is:             02_using_maybe_monad.hs
-  default-language:    Haskell2010
-  default-extensions:  NoImplicitPrelude
-                     , OverloadedStrings
-  build-depends:       base >= 4.7 && < 5
-                     , directory
-                     , foundation
-                     , filepath
+--executable mv_on_batch
+--  hs-source-dirs:      src/mv_on_batch
+--  --main-is:             01_first.hs
+--  main-is:             02_using_maybe_monad.hs
+--  default-language:    Haskell2010
+--  default-extensions:  NoImplicitPrelude
+--                     , OverloadedStrings
+--  build-depends:       base >= 4.7 && < 5
+--                     , directory
+--                     , foundation
+--                     , filepath
 
-executable rpar
-  hs-source-dirs:      src
-  main-is:             rpar.hs
-  default-language:    Haskell2010
-  default-extensions:  NoImplicitPrelude
-                     , OverloadedStrings
-  build-depends:       base >= 4.7 && < 5
-                     , parallel
-                     , time
-                     , foundation
-  ghc-options:         -threaded
+--executable rpar
+--  hs-source-dirs:      src
+--  main-is:             rpar.hs
+--  default-language:    Haskell2010
+--  default-extensions:  NoImplicitPrelude
+--                     , OverloadedStrings
+--  build-depends:       base >= 4.7 && < 5
+--                     , parallel
+--                     , time
+--                     , foundation
+--  ghc-options:         -threaded
+--
+--executable default
+--  hs-source-dirs:      src
+--  main-is:             default.hs
+--  default-language:    Haskell2010
+--  default-extensions:  NoImplicitPrelude
+--                     , OverloadedStrings
+--  build-depends:       base >= 4.7 && < 5
+--                     , foundation
 
-executable default
-  hs-source-dirs:      src
-  main-is:             default.hs
+library
+  hs-source-dirs:      src/rwh/ch16
   default-language:    Haskell2010
-  default-extensions:  NoImplicitPrelude
-                     , OverloadedStrings
   build-depends:       base >= 4.7 && < 5
                      , foundation
+                     , megaparsec
+                     , text
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+                     , FlexibleContexts
+                     , TypeFamilies
+  exposed-modules:     CSVParser
