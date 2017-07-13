@@ -59,3 +59,16 @@ library
                      , FlexibleContexts
                      , TypeFamilies
   exposed-modules:     CSVParser
+
+executable type_families
+  hs-source-dirs:      src/type_families
+  main-is:             test1.hs
+  default-language:    Haskell2010
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+                     , FlexibleContexts
+                     , TypeFamilies
+  build-depends:       base >= 4.7 && < 5
+                     , foundation
+                     , megaparsec
+                     , text
