@@ -21,3 +21,7 @@ main =
     --(toChars::Text->[Char]) "Hey :D"
     --toChars "Hey :D" -- doesn't work
     --(toChars "Hey :D" :: (s ~ Text, IsString s, Stream s) => [Token s]) -- also doesn't work
+
+{- For more info on why isn't GHC able to infer the types correctly look at
+ - https://stackoverflow.com/questions/45069784/cannot-match-type-of-expression-using-typefamilies
+-}
