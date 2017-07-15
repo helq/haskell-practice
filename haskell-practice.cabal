@@ -14,6 +14,10 @@ cabal-version:       >=1.10
 extra-source-files:  README.md
 license:             MIT
 
+-- This is commented so I can use hdevtools (with neovim), hdevtools has some problems
+-- with multiple executable's in a cabal file.
+-- https://github.com/hdevtools/hdevtools/issues/54
+
 --executable mv_on_batch
 --  hs-source-dirs:      src/mv_on_batch
 --  --main-is:             01_first.hs
