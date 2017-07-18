@@ -49,6 +49,7 @@
 
 # Ignore some builtin hints
 - ignore: {name: Use String}
+- ignore: {name: Use print}
 # - ignore: {name: Use const, within: SpecialModule} # Only within certain modules
 
 

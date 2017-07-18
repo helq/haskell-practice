@@ -37,6 +37,7 @@ rename filePath = do
                          Just "best" -> 7
                          _           -> 6
 
+basedir :: FilePath
 basedir = "/tmp/fakefiles/"
 --basedir = "/home/helq/Experimenting/lisi/sampleRNN_ICLR2017/results_3t_cond/DIMEX_3T/samples/"
 

@@ -18,18 +18,22 @@ license:             MIT
 -- with multiple executable's in a cabal file.
 -- https://github.com/hdevtools/hdevtools/issues/54
 
---executable mv_on_batch
---  hs-source-dirs:      src/mv_on_batch
---  --main-is:             01_first.hs
---  main-is:             02_using_maybe_monad.hs
---  default-language:    Haskell2010
---  default-extensions:  NoImplicitPrelude
---                     , OverloadedStrings
---  build-depends:       base >= 4.7 && < 5
---                     , directory
---                     , foundation
---                     , filepath
---  ghc-options:         -Wall
+executable mv_on_batch
+  hs-source-dirs:      src/mv_on_batch
+  --main-is:             01_first.hs
+  --main-is:             02_using_maybe_monad.hs
+  main-is:             03_adding_megaparsec.hs
+  default-language:    Haskell2010
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+  build-depends:       base >= 4.7 && < 5
+                     , directory
+                     , foundation
+                     , filepath
+                     , megaparsec
+                     , text
+                     , either
+  ghc-options:         -Wall
 
 --executable rpar
 --  hs-source-dirs:      src
@@ -54,17 +58,17 @@ license:             MIT
 --                     , foundation
 --  ghc-options:         -Wall
 
-library
-  hs-source-dirs:      src/rwh/ch16
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-                     , foundation
-                     , megaparsec
-                     , text
-  default-extensions:  NoImplicitPrelude
-                     , OverloadedStrings
-  exposed-modules:     CSVParser
-  ghc-options:         -Wall
+--library
+--  hs-source-dirs:      src/rwh/ch16
+--  default-language:    Haskell2010
+--  build-depends:       base >= 4.7 && < 5
+--                     , foundation
+--                     , megaparsec
+--                     , text
+--  default-extensions:  NoImplicitPrelude
+--                     , OverloadedStrings
+--  exposed-modules:     CSVParser
+--  ghc-options:         -Wall
 
 executable type_families
   hs-source-dirs:      src/type_families
