@@ -18,22 +18,41 @@ license:             MIT
 -- with multiple executable's in a cabal file.
 -- https://github.com/hdevtools/hdevtools/issues/54
 
-executable mv_on_batch
-  hs-source-dirs:      src/mv_on_batch
+executable sort_next_actions
+  hs-source-dirs:      src/next_actions
   --main-is:             01_first.hs
   --main-is:             02_using_maybe_monad.hs
-  main-is:             03_adding_megaparsec.hs
+  main-is:             sort_next_actions.hs
   default-language:    Haskell2010
   default-extensions:  NoImplicitPrelude
                      , OverloadedStrings
+                     , TemplateHaskell
+                     , RankNTypes
   build-depends:       base >= 4.7 && < 5
-                     , directory
                      , foundation
-                     , filepath
                      , megaparsec
                      , text
-                     , either
+                     , time
+                     , microlens
+                     , microlens-th
   ghc-options:         -Wall
+
+--executable mv_on_batch
+--  hs-source-dirs:      src/mv_on_batch
+--  --main-is:             01_first.hs
+--  --main-is:             02_using_maybe_monad.hs
+--  main-is:             03_adding_megaparsec.hs
+--  default-language:    Haskell2010
+--  default-extensions:  NoImplicitPrelude
+--                     , OverloadedStrings
+--  build-depends:       base >= 4.7 && < 5
+--                     , directory
+--                     , foundation
+--                     , filepath
+--                     , megaparsec
+--                     , text
+--                     , either
+--  ghc-options:         -Wall
 
 --executable rpar
 --  hs-source-dirs:      src
