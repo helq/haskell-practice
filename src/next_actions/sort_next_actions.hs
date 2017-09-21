@@ -101,7 +101,7 @@ myOrderValueWith now task = extractValue task
 {- Main program -}
 
 filename :: [Char]
-filename = "/home/helq/planning/actionable/next_actions.md"
+filename = "/home/helq/planning/actionable/_next_actions.md"
 
 getTasks :: IO [NextAction]
 getTasks = do
