@@ -105,6 +105,7 @@ filename = "/home/helq/planning/actionable/_next_actions.md"
 
 getTasks :: IO [NextAction]
 getTasks = do
+  -- TODO: take into account possible exceptions raised on runtime
   file <- Text.readFile filename
   --putStrLn . fromList . unpack $ file
   return $ extractTasks file

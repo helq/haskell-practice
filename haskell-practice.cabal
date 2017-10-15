@@ -37,22 +37,22 @@ executable sort_next_actions
                      , microlens-th
   ghc-options:         -Wall
 
---executable mv_on_batch
---  hs-source-dirs:      src/mv_on_batch
---  --main-is:             01_first.hs
---  --main-is:             02_using_maybe_monad.hs
---  main-is:             03_adding_megaparsec.hs
---  default-language:    Haskell2010
---  default-extensions:  NoImplicitPrelude
---                     , OverloadedStrings
---  build-depends:       base >= 4.7 && < 5
---                     , directory
---                     , foundation
---                     , filepath
---                     , megaparsec
---                     , text
---                     , either
---  ghc-options:         -Wall
+executable mv_on_batch
+  hs-source-dirs:      src/mv_on_batch
+  --main-is:             01_first.hs
+  --main-is:             02_using_maybe_monad.hs
+  main-is:             03_adding_megaparsec.hs
+  default-language:    Haskell2010
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+  build-depends:       base >= 4.7 && < 5
+                     , directory
+                     , foundation
+                     , filepath
+                     , megaparsec
+                     , text
+                     , either
+  ghc-options:         -Wall
 
 --executable rpar
 --  hs-source-dirs:      src
@@ -64,30 +64,29 @@ executable sort_next_actions
 --                     , parallel
 --                     , time
 --                     , foundation
---  ghc-options:         -threaded
---                     , -Wall
+--  ghc-options:         -threaded -Wall
 
---executable default
---  hs-source-dirs:      src
---  main-is:             default.hs
---  default-language:    Haskell2010
---  default-extensions:  NoImplicitPrelude
---                     , OverloadedStrings
---  build-depends:       base >= 4.7 && < 5
---                     , foundation
---  ghc-options:         -Wall
+executable default
+  hs-source-dirs:      src
+  main-is:             default.hs
+  default-language:    Haskell2010
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+  build-depends:       base >= 4.7 && < 5
+                     , foundation
+  ghc-options:         -Wall
 
---library
---  hs-source-dirs:      src/rwh/ch16
---  default-language:    Haskell2010
---  build-depends:       base >= 4.7 && < 5
---                     , foundation
---                     , megaparsec
---                     , text
---  default-extensions:  NoImplicitPrelude
---                     , OverloadedStrings
---  exposed-modules:     CSVParser
---  ghc-options:         -Wall
+library
+  hs-source-dirs:      src/rwh/ch16
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , foundation
+                     , megaparsec
+                     , text
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+  exposed-modules:     CSVParser
+  ghc-options:         -Wall
 
 executable type_families
   hs-source-dirs:      src/type_families
@@ -100,4 +99,15 @@ executable type_families
                      , foundation
                      , megaparsec
                      , text
+  ghc-options:         -Wall
+
+executable dependenttype
+  hs-source-dirs:      src/dependent_types
+  --main-is:             capturing_knownat_runtime.hs
+  main-is:             typelist_to_regularlist.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall -Wincomplete-uni-patterns -Wincomplete-record-updates
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , singletons
+                     , vector-sized
   ghc-options:         -Wall
