@@ -56,7 +56,7 @@ instance Show NextAction where
 
 lineParser :: Parsec Dec Text NextAction
 lineParser = do
-  _ <- char '-' >> space >> char '{'
+  _ <- ((space >> char '-') <|> char '-') >> space >> char '{'
   priority_   <- priorityParser
   _ <- char '|'
   importance_ <- importanceParser

@@ -1,11 +1,12 @@
-import Foundation
-import Foundation.Collection (getNonEmpty)
-import Foundation.String.Read (readInteger)
-import System.Directory (listDirectory)
-import qualified System.Directory as D (renameFile)
-import System.IO.Error (catchIOError, isDoesNotExistError, ioError)
-import Data.Foldable (forM_)
-import qualified System.FilePath as F (takeBaseName, replaceBaseName)
+import           Data.Foldable          (forM_)
+import           Foundation
+import           Foundation.Collection  (getNonEmpty)
+import           Foundation.String.Read (readInteger)
+import           System.Directory       (listDirectory)
+import qualified System.Directory       as D (renameFile)
+import qualified System.FilePath        as F (replaceBaseName, takeBaseName)
+import           System.IO.Error        (catchIOError, ioError,
+                                         isDoesNotExistError)
 
 type FilePath = String
 
@@ -31,16 +32,17 @@ rename filePath = case nonEmpty parts of
                         else parts'
         where
           fmapToNonEmpty f = fromMaybe parts' . nonEmpty . f . getNonEmpty
-          lenParts = length parts'
+          {-lenParts = length parts'-}
 
     reorder' :: [String] -> [String]
-    reorder' parts = start <> num <> end
-      where (start, end') = splitAt splitNum parts
+    reorder' parts' = start <> num <> end
+      where (start, end') = splitAt splitNum parts'
             (num, end)    = revSplitAt 1 end'
-            splitNum = case last <$> nonEmpty (take 7 parts) of
+            splitNum = case last <$> nonEmpty (take 7 parts') of
                          Just "best" -> 7
                          _           -> 6
 
+basedir :: FilePath
 basedir = "/tmp/fakefiles/"
 --basedir = "/home/helq/Experimenting/lisi/sampleRNN_ICLR2017/results_3t_cond/DIMEX_3T/samples/"
 
