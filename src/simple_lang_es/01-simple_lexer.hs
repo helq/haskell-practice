@@ -25,7 +25,7 @@ import qualified Text.Megaparsec.Lexer as ML (space)
 
 {-
  to prove that the lexer works according to the specifications run:
- $ for i in src/simple_lexer/testCases/*/in*.txt; do
+ $ for i in src/simple_lang_es/test_cases/lexer/*/in*.txt; do
        echo "checking 'lexing' of: $i"
        diff --ignore-all-space $(echo "$i" | sed -e "s/in/out/") <(stack exec simple_lexer < "$i")
    done
@@ -58,7 +58,7 @@ reservedwords = ["while", "for", "if", "log", "funcion", "false", "true",
 idToken :: Parsec Dec Text [Char]
 idToken = do
   pos <- currPos
-  name <- fmap (:[]) letterChar <> many alphaNumChar
+  name <- fmap (:[]) (letterChar <|> char '_') <> many (alphaNumChar <|> char '_')
   case name `elemIndex` reservedwords of
     Just _  -> return ("<"<>name<>","<>showPos pos<>">")
     Nothing -> return ("<id,"<>name<>","<>showPos pos<>">")

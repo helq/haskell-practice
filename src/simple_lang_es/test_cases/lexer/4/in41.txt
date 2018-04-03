@@ -1,0 +1,42 @@
+funcion funcion
+  while
+    if
+    else
+     importar  true false
+retorno
+nil
+end
+desde
+todo
+
+in
+# 'token_integer':1, log
+ # t_ignore = '     '
+
+While
+WHILE
+while
+"Cadena"
+"Cadena %&/()==(*~]{ ;D"
+{}
+[]
+()
+>=<=
+==
+>>=
+<
+!=
+.
+&&
+||
+!
++
+-
+*
+/
+%
+^
+=
+,
+:
+===

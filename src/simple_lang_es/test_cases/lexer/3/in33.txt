@@ -1,0 +1,15 @@
+funcion factorial(numero)
+  if (numero == 0) {
+    retorno (1)
+  }
+ retorno (numero * factorial(numero - 1))
+end funcion
+log("prueba de recursividad")
+log(factorial(4))
+
+funcion suma(a,b)
+  retorno(a+b)
+end funcion
+
+log("Prueba de suma")
+log(suma(1,2))

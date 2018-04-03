@@ -1,0 +1,15 @@
+funcion id(arg, arg2) 
+  # test
+  a = 3 + test(3, 4)
+end funcion
+
+funcion test(a, b)  
+  end funcion
+
+
+r = a
+
+# esto debería fallar
+funcion = t
+
+#

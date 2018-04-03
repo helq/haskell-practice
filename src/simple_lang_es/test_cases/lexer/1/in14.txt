@@ -1,0 +1,19 @@
+log(1+2*3)
+7
+log(10-4*2)
+2
+#En este ejemplo en caso de querer que las operaciones se realicen en otro orden, se deben utilizar parentesis.
+log((5+8)/(7-2))
+2.6
+log(10%3)
+1
+log(10%4)
+ 2
+log(10%5)
+ 0
+log(10.5%3)
+
+1.5
+
+ log(2^3)
+ 

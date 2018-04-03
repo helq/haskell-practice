@@ -1,0 +1,24 @@
+<log,1,1>
+<token_par_izq,1,4>
+<token_string,prueba del if,1,5>
+<token_par_der,1,20>
+<id,a,2,1>
+<token_assign,2,2>
+<false,2,4>
+<id,b,3,1>
+<token_assign,3,3>
+<true,3,5>
+<if,4,1>
+<id,a,4,4>
+<token_and,4,6>
+<id,b,4,9>
+<token_llave_izq,4,11>
+<log,5,3>
+<token_par_izq,5,7>
+<token_string,El resultado es verdadero,5,8>
+<token_par_der,5,35>
+<token_llave_der,6,1>
+<log,8,1>
+<token_par_izq,8,4>
+<token_string,El valor es falso,8,5>
+<token_par_der,8,24>

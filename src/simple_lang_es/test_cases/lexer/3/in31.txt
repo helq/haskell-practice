@@ -1,0 +1,15 @@
+for i in [1,2,3]{
+ log("Ahora i vale " + i)
+}
+
+for i in [1,2,3]{
+ log("Ahora i vale " + i + " y su cuadrado es " + i*i)
+}
+
+for i in ["ANA", "Juan", 80]{
+ log("El valor de la variable i es " + i)
+}
+
+for i in ["A","M","I","G","O"]{
+ log("Dame una " + i)
+ }

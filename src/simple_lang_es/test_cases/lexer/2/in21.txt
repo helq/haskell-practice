@@ -1,0 +1,25 @@
+a=false
+ b=true
+ log(a||b)
+True identif
+ log(a&&b
+False identificador
+ 
+#En este ejemplo se ha utilizado el operador de negacion. En donde se pasa de verdadero a falso.
+
+a=true
+log(!a)
+False
+
+#En este ejemplo se hace una prueba de comparacion con los operadores mayor que y menor que.
+
+log(3>2)       
+True
+log(3<2)
+False
+
+ 
+
+
+
+

@@ -1,0 +1,9 @@
+a=12
+x= 1.2
+string="hola mundo"
+log(string)
+a= false
+log(a||true)
+importar math
+c=2
+log(raiz(c))

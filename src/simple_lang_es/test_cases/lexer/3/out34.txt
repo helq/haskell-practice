@@ -1,0 +1,19 @@
+<funcion,1,1>
+<id,hola,1,9>
+<token_par_izq,1,13>
+<id,nombre,1,14>
+<token_par_der,1,20>
+<log,2,3>
+<token_par_izq,2,7>
+<token_string,Hola %&/()=,2,8>
+<token_mas,2,22>
+<id,nombre,2,24>
+<token_mas,2,31>
+<token_string, :D,2,33>
+<token_par_der,2,38>
+<end,3,1>
+<funcion,3,5>
+<id,hola,4,1>
+<token_par_izq,4,5>
+<token_string,nombre,4,6>
+<token_par_der,4,14>

@@ -1,23 +1,25 @@
+{-# LANGUAGE LambdaCase #-}
+
+import           Control.Monad     (forM_)
 import           Foundation
-import           Control.Monad (forM_)
-import           Text.Megaparsec --(Parsec, Dec, noneOf, parseMaybe, char, many,
+import           Text.Megaparsec
                                  -- some, count, string, try, digitChar, anyChar,
                                  -- optional)
-import           Data.Text (Text, lines, unpack)--, pack)
+import           Data.Text         (Text, lines, unpack)
 import           Data.Time
-import           Lens.Micro (Lens')--, set)
+import           Lens.Micro        (Lens')
 --import           Lens.Micro.TH (makeLenses)
+import qualified GHC.Num           as Num (negate)
 import           Lens.Micro.Extras (view)
-import qualified GHC.Num as Num (negate)
 --import qualified GHC.Real as Real (fromRational)
-import qualified Data.Text.IO as Text (readFile)
-import           Prelude (logBase)
-import           GHC.Float (fromRat)
-import           GHC.Real (toRational)
+import qualified Data.Text.IO      as Text (readFile)
+import           GHC.Float         (fromRat)
+import           GHC.Real          (toRational)
+import           Prelude           (logBase)
 
 -- workaround in the meantime, the people from foundation are still debating what to do with show
 -- for more info: https://github.com/haskell-foundation/foundation/issues/193
-import qualified Prelude (show)
+import qualified Prelude           (show)
 
 {- Structures definitions -}
 
@@ -48,22 +50,19 @@ instance Show NextAction where
   show (NextAction p i d msg) = "- {" <> (prio:'|':imp:'|': date) <> "} " <> (fromList . unpack $ msg)
     where prio = case p of Urgent -> 'U'; NotUrgent -> 'N'
           imp  = case i of Low -> 'L'; Medium -> 'M'; High -> 'H'
-          date = fmap (\x->case x of '-'->'.'; c->c) -- replacing all - for .
+          date = fmap (\case '-'->'.'; c->c) -- replacing all '-' for '.'
                   . take 10 -- ugly, find a more standard way, using UTCTime helper functions
                   . toList $ show d :: [Char]
 
 {- Parser -}
-
+-- TODO: read more than oneline tasks, tasks may be sometimes multilined
 lineParser :: Parsec Dec Text NextAction
 lineParser = do
-  _ <- ((space >> char '-') <|> char '-') >> space >> char '{'
-  priority_   <- priorityParser
-  _ <- char '|'
-  importance_ <- importanceParser
-  _ <- char '|'
-  date        <- dateParser
-  _ <- char '}' >> space
-  msg <- fromList <$> many anyChar
+  _ <- optional space >> char '-' >> space >> char '{'
+  priority_   <- priorityParser   <* char '|'
+  importance_ <- importanceParser <* char '|'
+  date        <- dateParser       <* (char '}' >> space)
+  msg         <- fromList <$> many anyChar
   return $ NextAction priority_ importance_ date msg
 
 priorityParser :: Parsec Dec Text Priority
@@ -77,8 +76,12 @@ importanceParser = (Low    <$ char 'L')
 
 dateParser :: Parsec Dec Text UTCTime
 dateParser = do
-  year <- count 10 (oneOf ('.':['0'..'9']))
-  parseTimeM True defaultTimeLocale "%Y.%m.%d" year
+  date <- year <> dot <> mnday <> dot <> mnday
+  parseTimeM True defaultTimeLocale "%Y.%m.%d" date
+    where
+      dot   = (:[]) <$> char '.'
+      year  = count 4 . oneOf $ ['0'..'9']
+      mnday = count 2 . oneOf $ ['0'..'9']
 
 extractTasks :: Text -> [NextAction]
 extractTasks = catMaybes . fmap parseLine . lines
@@ -89,14 +92,14 @@ extractTasks = catMaybes . fmap parseLine . lines
 
 myOrderValueWith :: UTCTime -> NextAction -> Double
 myOrderValueWith now task = extractValue task
-  where extractValue (NextAction p i _ _) = negate $ g p * h i * logBase 1.5 (age/aDay+3)
+  where extractValue (NextAction p i _ _) = negate $ g p * h i * logBase 1.5 (age/secsADay+3)
         g NotUrgent = 1
         g Urgent    = 2
         h Low    = 1
         h Medium = 1.5
         h High   = 2
         age = fromRat . toRational . view (ageTo now) $ task
-        aDay = 24*60*60
+        secsADay = 24*60*60 -- seconds in a day
 
 {- Main program -}
 

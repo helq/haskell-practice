@@ -1,0 +1,18 @@
+<for,1,1>
+<id,i,1,5>
+<in,1,7>
+<token_cor_izq,1,10>
+<token_integer,1,1,11>
+<token_coma,1,12>
+<token_integer,2,1,13>
+<token_coma,1,14>
+<token_integer,3,1,15>
+<token_cor_der,1,16>
+<token_llave_izq,1,17>
+<log,2,2>
+<token_par_izq,2,5>
+<token_string,hola ,2,6>
+<token_mas,2,14>
+<id,i,2,16>
+<token_par_der,2,17>
+<token_llave_der,3,1>
