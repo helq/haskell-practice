@@ -18,6 +18,18 @@ license:             MIT
 -- with multiple executable's in a cabal file.
 -- https://github.com/hdevtools/hdevtools/issues/54
 
+library
+  hs-source-dirs:      src/rwh/ch16
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , foundation
+                     , megaparsec < 6
+                     , text
+  default-extensions:  NoImplicitPrelude
+                     , OverloadedStrings
+  exposed-modules:     CSVParser
+  ghc-options:         -Wall
+
 executable sort_next_actions
   hs-source-dirs:      src/next_actions
   main-is:             sort_next_actions.hs
@@ -74,18 +86,6 @@ executable default
                      , foundation
   ghc-options:         -Wall
 
-library
-  hs-source-dirs:      src/rwh/ch16
-  default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
-                     , foundation
-                     , megaparsec < 6
-                     , text
-  default-extensions:  NoImplicitPrelude
-                     , OverloadedStrings
-  exposed-modules:     CSVParser
-  ghc-options:         -Wall
-
 executable type_families
   hs-source-dirs:      src/type_families
   --main-is:             test1.hs
@@ -132,4 +132,12 @@ executable simple_parser
                      , foundation
                      , megaparsec < 6
                      , text
+  ghc-options:         -Wall
+
+executable strict-ex
+  hs-source-dirs:      src/strict
+  main-is:             without-extension.hs
+  --main-is:             with-strict-extension.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
   ghc-options:         -Wall
